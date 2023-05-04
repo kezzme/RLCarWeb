@@ -1,0 +1,98 @@
+<?php
+    session_start();
+    require'car_units.php';
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RL Car Dealer</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    
+<header class="header">
+    <div id="menu-btn" class="fas fa-bars"></div>
+        <a href="#" class="logo"> RL Car dealer</a>
+            <nav class="navbar">
+                <a href="#home">home</a>
+                <a href="#vehicles">vehicles</a>
+                <a href="#featured">featured</a>
+                <a href="#services">services</a>
+                <a href="#contact">contact</a>
+            </nav>
+
+        <div id="login-btn">
+            <a href="/Admin/pages-login.html" class="btn" role="button">Login</a>
+            <i class="far fa-user"></i>
+        </div>
+
+</header> 
+
+<section class="home" id="home">
+    <img data-speed="5" class="home-parallax" src="images/home-img.png" alt="">
+</section>
+
+<section class="vehicles" id="vehicles">
+    <h1 class="heading"> Here are the list of our available units </h1>
+    
+    
+        <div class="swiper vehicles-slider">
+
+            <div class="swiper-wrapper">
+            <?php
+        if(isset($arrUnits))
+        foreach($arrUnits as $key => $units) {
+        ?> 
+
+                <div class="swiper-slide box">
+                    <img src="images/<?php echo $units['image']; ?>">
+                    
+                    <div class="content">
+                        <h3 class="title"><?php echo $units['car_model']; ?></h3>
+                        <h4><?php echo $units['car_variant']; ?></h4>
+                        <div> <span>₱<?php echo $units['price']; ?></span></div>
+                        <p>
+                            <span class="fas fa-circle"><?php echo $units['engine']; ?></span>
+                            <span class="fas fa-circle"><?php echo $units['transmission']; ?></span>
+                            <span class="fas fa-circle"><?php echo $units['fuel']; ?></span>
+                        </p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                <?php
+}else{
+    echo ('No Product Detected!');
+     }
+?>
+            </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
